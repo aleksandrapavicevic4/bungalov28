@@ -44,6 +44,45 @@ const groundsCards = [
   },
 ];
 
+const comfortCards = [
+  {
+    title: 'JBL PartyBox 310',
+    detail: 'Fills the yard with sound',
+    icon: 'ti-device-speaker',
+    featured: true,
+  },
+  {
+    title: 'Wine Cooler',
+    detail: 'For the right temperature, every time',
+    icon: 'ti-bottle',
+    featured: false,
+  },
+  {
+    title: 'TV & Netflix',
+    detail: 'Evenings in, made better',
+    icon: 'ti-device-tv',
+    featured: false,
+  },
+  {
+    title: 'Board Games',
+    detail: 'For unplugged evenings',
+    icon: 'ti-chess',
+    featured: false,
+  },
+  {
+    title: 'Underfloor Heating',
+    detail: 'Cold mornings are warm mornings',
+    icon: 'ti-temperature-plus',
+    featured: false,
+  },
+  {
+    title: 'Air Conditioning',
+    detail: 'Your comfort, your temperature',
+    icon: 'ti-wind',
+    featured: false,
+  },
+];
+
 const highlights = [
   {
     title: 'Heated Pool',
@@ -289,6 +328,64 @@ export default function Amenities() {
               where the tomatoes are actually from the garden. Solar panels run
               quietly in the background.
             </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── Layer 3C: Comfort & Entertainment Zone ───────────────── */}
+      <div className={styles.comfort}>
+        <div className={styles.comfortInner}>
+
+          {/* Centered text header */}
+          <div className={styles.comfortHeader}>
+            <p
+              className={`${styles.zoneLabel} ${styles.animateFade}`}
+              data-animate
+            >
+              Comfort
+            </p>
+            <h2
+              className={`${styles.zoneHeadline} ${styles.animate}`}
+              data-animate
+              style={{ transitionDelay: '200ms' }}
+            >
+              Nothing was forgotten.
+            </h2>
+            <div
+              className={`${styles.comfortDivider} ${styles.animateFade}`}
+              data-animate
+              style={{ transitionDelay: '300ms' }}
+              aria-hidden="true"
+            />
+            <p
+              className={`${styles.zoneBody} ${styles.animateFade}`}
+              data-animate
+              style={{ transitionDelay: '400ms' }}
+            >
+              The JBL PartyBox fills the yard. The wine cooler is stocked for
+              the occasion. Underfloor heating means cold mornings are warm
+              mornings. And the fireplace is always ready.
+            </p>
+          </div>
+
+          {/* 3×2 card grid — wave stagger L→R, T→B */}
+          <div className={styles.comfortGrid}>
+            {comfortCards.map((item, i) => (
+              <div
+                key={item.title}
+                className={`${styles.comfortCard} ${item.featured ? styles.comfortCardFeatured : ''} ${styles.animate}`}
+                data-animate
+                style={{ transitionDelay: `${i * 60}ms` }}
+              >
+                <i
+                  className={`ti ${item.icon} ${styles.comfortCardIcon}`}
+                  aria-hidden="true"
+                />
+                <h3 className={styles.comfortCardTitle}>{item.title}</h3>
+                <p className={styles.comfortCardDetail}>{item.detail}</p>
+              </div>
+            ))}
           </div>
 
         </div>

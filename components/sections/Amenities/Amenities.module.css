@@ -453,6 +453,93 @@
 
 
 /* ─────────────────────────────────────────────────────────────
+   Layer 3C — Comfort & Entertainment Zone
+───────────────────────────────────────────────────────────── */
+
+.comfort {
+  background-color: var(--bg-primary);
+  padding: 100px var(--container-padding);
+}
+
+.comfortInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* Centered text header */
+
+.comfortHeader {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* centers the goldDivider and all text */
+  text-align: center;
+  gap: 0;
+}
+
+/* Comfort-specific divider: inherits gold bar appearance
+   but is centred via the flex parent — no extra margin needed */
+.comfortDivider {
+  width: 36px;
+  height: 1px;
+  background-color: var(--gold);
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* 3×2 card grid */
+
+.comfortGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.comfortCard {
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 0.5px solid var(--border-default);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Featured card — JBL PartyBox, slightly warm tint */
+.comfortCardFeatured {
+  background: var(--bg-card-warm);
+}
+
+.comfortCardIcon {
+  font-size: 22px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.comfortCardTitle {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.comfortCardDetail {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-hint);
+  line-height: 1.55;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
    Responsive — Tablet (≤ 900px)
 ───────────────────────────────────────────────────────────── */
 
@@ -495,6 +582,15 @@
 
   .groundsText {
     order: -1;
+  }
+
+  /* Comfort: 2-column card grid, tighter inner padding */
+  .comfortInner {
+    padding: 0;
+  }
+
+  .comfortGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -544,6 +640,15 @@
   }
 
   .groundsRow {
+    grid-template-columns: 1fr;
+  }
+
+  /* Comfort: tighter padding, single-column cards */
+  .comfort {
+    padding: 70px 24px;
+  }
+
+  .comfortGrid {
     grid-template-columns: 1fr;
   }
 }
