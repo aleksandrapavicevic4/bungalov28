@@ -1,95 +1,549 @@
+/* ─────────────────────────────────────────────────────────────
+   Scroll animation primitives
+   Applied via data-animate attribute + IntersectionObserver
+───────────────────────────────────────────────────────────── */
+
+/* Rise + fade (default: used for headlines, cards) */
+.animate {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Fade-only (used for label, subtext) */
+.animateFade {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+
+/* Slide from left (used for zone text columns) */
+.animateLeft {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Slide from right (used for zone card columns) */
+.animateRight {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Triggered state (added by IntersectionObserver) */
+.animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animateFade.visible {
+  opacity: 1;
+}
+
+.animateLeft.visible,
+.animateRight.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   Section wrapper
+───────────────────────────────────────────────────────────── */
+
 .amenities {
-  background-color: var(--color-cream);
-  padding: var(--section-padding-y) var(--container-padding);
+  background-color: var(--bg-primary);
 }
 
-.inner {
-  max-width: var(--max-width);
+
+/* ─────────────────────────────────────────────────────────────
+   Layer 1 — Section Entry
+───────────────────────────────────────────────────────────── */
+
+.entry {
+  padding: 120px var(--container-padding) 80px;
+}
+
+.entryInner {
+  max-width: 600px;
   margin: 0 auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  gap: 1.25rem;
 }
 
-/* Section header */
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 560px;
-}
-
-.eyebrow {
+.entryLabel {
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--color-gold);
-  font-weight: 500;
+  color: var(--text-hint);
 }
 
-.headline {
-  font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--color-charcoal);
+.entryHeadline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--text-primary);
   line-height: 1.1;
 }
 
-.intro {
-  font-size: 0.9375rem;
-  color: var(--color-warm-gray);
-  line-height: 1.8;
+.entrySubtext {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--text-body);
+  line-height: 1.75;
 }
 
-/* Grid */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background-color: rgba(139, 125, 107, 0.2);
-  border: 1px solid rgba(139, 125, 107, 0.2);
+
+/* ─────────────────────────────────────────────────────────────
+   Layer 2 — Signature Highlights Strip
+───────────────────────────────────────────────────────────── */
+
+.strip {
+  padding: 0 var(--container-padding) 80px;
 }
+
+.stripInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  gap: 20px;
+}
+
+/* Card */
 
 .card {
-  background-color: var(--color-cream);
-  padding: 2rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  transition: background-color 0.2s ease;
+  flex: 1;
+  min-width: 0;
+  border-radius: 16px;
+  border: 0.5px solid var(--border-default);
+  background: var(--bg-card);
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.6s ease-out; /* keep opacity transition from .animate */
 }
 
 .card:hover {
-  background-color: var(--color-white);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.10);
 }
 
-.icon {
-  font-size: 1.25rem;
-  color: var(--color-gold);
+/* Prevent hover lift fighting with the entry animation */
+.card:not(.visible):hover {
+  transform: translateY(28px); /* stay in pre-animate position */
+  box-shadow: none;
+}
+
+.card:hover .amenityPhoto {
+  transform: scale(1.04);
+}
+
+/* Photo */
+
+.photoWrap {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.amenityPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Card body */
+
+.cardBody {
+  padding: 16px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardIcon {
+  font-size: 24px;
+  color: var(--gold);
   line-height: 1;
-  font-style: normal;
 }
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 16px;
   font-weight: 500;
-  color: var(--color-charcoal);
+  color: var(--text-primary);
+  line-height: 1.2;
 }
 
-.cardDesc {
-  font-size: 0.875rem;
-  color: var(--color-warm-gray);
-  line-height: 1.7;
+.cardDetail {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-hint);
+  line-height: 1.5;
 }
 
-@media (min-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+
+/* ─────────────────────────────────────────────────────────────
+   Layer 3A — Wellness Zone
+───────────────────────────────────────────────────────────── */
+
+.wellness {
+  background-color: var(--bg-stone);
+  padding: 100px var(--container-padding);
+}
+
+.wellnessInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 38% 62%;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Shared zone label — reused by future zones */
+.zoneLabel {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-hint);
+  margin-bottom: 0.75rem;
+}
+
+/* Left text column */
+
+.wellnessText {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.zoneHeadline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.goldDivider {
+  width: 36px;
+  height: 1px;
+  background-color: var(--gold);
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+
+.zoneBody {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--text-body);
+  line-height: 1.8;
+}
+
+/* Right card grid — 2×2 */
+
+.wellnessCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.wellnessCard {
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 0.5px solid var(--border-default);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wellnessCardIcon {
+  font-size: 22px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.wellnessCardTitle {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.wellnessCardDesc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-hint);
+  line-height: 1.55;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   Layer 3B — The Grounds Zone
+───────────────────────────────────────────────────────────── */
+
+.grounds {
+  background-color: var(--bg-sage);
+  padding: 100px var(--container-padding);
+}
+
+.groundsInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 62% 38%;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Left: stacked card column */
+
+.groundsCards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Row 1 — three equal cards */
+
+.groundsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+.groundsCard {
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 0.5px solid var(--border-default);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.groundsCardIcon {
+  font-size: 22px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.groundsCardTitle {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.groundsCardDesc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-hint);
+  line-height: 1.55;
+}
+
+/* Row 2 — Eco card */
+
+.ecoCard {
+  background: var(--bg-eco);
+  border-radius: 12px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ecoCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ecoCardIcon {
+  font-size: 22px;
+  color: #3B5E2A;
+  line-height: 1;
+}
+
+.ecoBadge {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #3B5E2A;
+  background: rgba(59, 94, 42, 0.13);
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+
+.ecoCardTitle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: #3B5E2A;
+  line-height: 1.3;
+}
+
+.ecoCardBody {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* Row 3 — Utility row (not a card) */
+
+.utilityRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 2px;
+}
+
+.utilityIcon {
+  font-size: 15px;
+  color: var(--text-hint);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.utilityText {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-hint);
+  line-height: 1.5;
+}
+
+/* Right: text column — structural wrapper only;
+   typography reuses shared zone classes */
+
+.groundsText {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive — Tablet (≤ 900px)
+───────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .entryHeadline {
+    font-size: 40px;
+  }
+
+  .stripInner {
+    padding: 0 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* hide scrollbar visually but keep functionality */
+    scrollbar-width: none;
+  }
+
+  .stripInner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: 0 0 calc(33.333% - 14px);
+    scroll-snap-align: start;
+  }
+
+  /* Wellness: collapse to single column, text first */
+  .wellnessInner {
+    padding: 0;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Grounds: collapse to single column, promote text above cards */
+  .groundsInner {
+    padding: 0;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .groundsText {
+    order: -1;
   }
 }
 
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive — Mobile (≤ 600px)
+───────────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .entry {
+    padding: 80px 24px 60px;
+  }
+
+  .entryHeadline {
+    font-size: 36px;
+  }
+
+  .strip {
+    padding: 0 0 60px;
+  }
+
+  .stripInner {
+    padding: 0 24px;
+    gap: 16px;
+  }
+
+  .card {
+    flex: 0 0 80vw;
+  }
+
+  /* Wellness: tighter padding, single-column cards */
+  .wellness {
+    padding: 70px 24px;
+  }
+
+  .zoneHeadline {
+    font-size: 32px;
+  }
+
+  .wellnessCards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Grounds: tighter padding, single-column row-1 cards */
+  .grounds {
+    padding: 70px 24px;
+  }
+
+  .groundsRow {
+    grid-template-columns: 1fr;
   }
 }
