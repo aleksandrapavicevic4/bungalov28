@@ -1,0 +1,133 @@
+.gallery {
+  background-color: var(--color-dark);
+  padding: var(--section-padding-y) 0;
+  overflow: hidden;
+}
+
+.header {
+  padding: 0 var(--container-padding) 3rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 500;
+}
+
+.headline {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-white);
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 220px;
+  gap: 3px;
+  padding: 0 var(--container-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.tile:hover .tilePlaceholder {
+  transform: scale(1.04);
+}
+
+.tilePlaceholder {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.55s ease;
+}
+
+/* Placeholder color variations — remove when real images are added */
+.tile:nth-child(1) .tilePlaceholder {
+  background-color: #2a2520;
+  background-image: linear-gradient(135deg, #2e2820 0%, #1e1b16 100%);
+}
+
+.tile:nth-child(2) .tilePlaceholder {
+  background-color: #1e2420;
+  background-image: linear-gradient(160deg, #222820 0%, #161e18 100%);
+}
+
+.tile:nth-child(3) .tilePlaceholder {
+  background-color: #1c2228;
+  background-image: linear-gradient(135deg, #202830 0%, #141c22 100%);
+}
+
+.tile:nth-child(4) .tilePlaceholder {
+  background-color: #28201c;
+  background-image: linear-gradient(135deg, #302620 0%, #1e1610 100%);
+}
+
+.tile:nth-child(5) .tilePlaceholder {
+  background-color: #241e18;
+  background-image: linear-gradient(135deg, #2a2218 0%, #181410 100%);
+}
+
+.tile:nth-child(6) .tilePlaceholder {
+  background-color: #201e24;
+  background-image: linear-gradient(135deg, #282630 0%, #14121a 100%);
+}
+
+.tileLabel {
+  position: absolute;
+  bottom: 0.875rem;
+  left: 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 248, 0.5);
+  font-family: var(--font-body);
+}
+
+/* Span modifiers */
+.wide {
+  grid-column: span 2;
+}
+
+.tall {
+  grid-row: span 2;
+}
+
+.cta {
+  padding: 2.5rem var(--container-padding) 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.ctaNote {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: rgba(250, 250, 248, 0.35);
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-auto-rows: 340px;
+    gap: 4px;
+  }
+}
