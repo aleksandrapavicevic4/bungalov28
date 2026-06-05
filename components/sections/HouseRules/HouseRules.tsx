@@ -2,35 +2,35 @@ import styles from "./HouseRules.module.css";
 
 const rules = [
   {
-    category: "Check-in & Check-out",
+    category: "Prijava i odjava",
     items: [
-      "Check-in from 15:00 — late check-in available on request",
-      "Check-out by 11:00",
-      "Early check-in or late check-out subject to availability",
+      "Prijava od 15:00 — kasnija prijava dostupna na zahtev",
+      "Odjava do 11:00",
+      "Ranija prijava ili kasnija odjava u zavisnosti od dostupnosti",
     ],
   },
   {
-    category: "Guests & Occupancy",
+    category: "Gosti i broj osoba",
     items: [
-      "Maximum 8 guests unless otherwise agreed in writing",
-      "Day visitors must be declared at the time of booking",
-      "Events or gatherings require prior approval",
+      "Maksimalno 8 gostiju, osim ako nije drugačije pisano dogovoreno",
+      "Dnevne posete moraju biti najavljene prilikom rezervacije",
+      "Događaji ili okupljanja zahtevaju prethodno odobrenje",
     ],
   },
   {
-    category: "The Property",
+    category: "Objekat",
     items: [
-      "No smoking indoors — designated outdoor area provided",
-      "Pets welcome with prior notice (small breeds only)",
-      "Please treat the space and its contents with care",
+      "Zabranjeno pušenje u prostoru — obezbeđen je prostor napolju",
+      "Kućni ljubimci dobrodošli uz prethodnu najavu (samo male rase)",
+      "Molimo vas da pažljivo postupate sa prostorom i njegovim sadržajem",
     ],
   },
   {
-    category: "Noise & Neighbours",
+    category: "Buka i komšije",
     items: [
-      "Quiet hours from 23:00 to 08:00",
-      "Outdoor music at responsible volumes only",
-      "We ask that you respect the peace of the surroundings",
+      "Tihi sati od 23:00 do 08:00",
+      "Muzika na otvorenom samo na umerenoj jačini",
+      "Molimo vas da poštujete mir okoline",
     ],
   },
 ];
@@ -40,11 +40,11 @@ export default function HouseRules() {
     <section id="rules" className={styles.rules}>
       <div className={styles.inner}>
         <div className={styles.header}>
-          <p className={styles.eyebrow}>Before You Arrive</p>
-          <h2 className={styles.headline}>House Rules</h2>
+          <p className={styles.eyebrow}>Pre nego što dođete</p>
+          <h2 className={styles.headline}>Kućni red</h2>
           <p className={styles.intro}>
-            A few simple things to keep this place as special for the next
-            guests as it will be for you.
+            Nekoliko jednostavnih pravila kako bi ovo mesto ostalo posebno
+            i za sledeće goste, baš kao što će biti i za vas.
           </p>
         </div>
 
