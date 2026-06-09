@@ -9,20 +9,20 @@ export default function Footer() {
           <Link href="/" className={styles.logo}>
             Bungalov<span className={styles.logoAccent}>28</span>
           </Link>
-          <p className={styles.tagline}>A private retreat where stillness meets luxury.</p>
+          <p className={styles.tagline}>Privatno utočište gde se mir susreće sa luksuzom.</p>
         </div>
 
         <nav className={styles.links}>
-          <Link href="#about">About</Link>
-          <Link href="#amenities">Amenities</Link>
-          <Link href="#gallery">Gallery</Link>
-          <Link href="#rules">House Rules</Link>
-          <Link href="#contact">Contact</Link>
+          <Link href="#about">O nama</Link>
+          <Link href="#amenities">Sadržaji</Link>
+          <Link href="#gallery">Galerija</Link>
+          <Link href="#rules">Kućni red</Link>
+          <Link href="#contact">Kontakt</Link>
         </nav>
 
         <div className={styles.bottom}>
           <p className={styles.copy}>
-            &copy; {new Date().getFullYear()} Bungalov28. All rights reserved.
+            &copy; {new Date().getFullYear()} Bungalov28. Sva prava zadržana.
           </p>
         </div>
       </div>

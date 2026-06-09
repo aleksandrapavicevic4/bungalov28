@@ -22,19 +22,19 @@ export default function Header() {
         </Link>
 
         <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}>
-          <Link href="#about" onClick={() => setMenuOpen(false)}>About</Link>
-          <Link href="#amenities" onClick={() => setMenuOpen(false)}>Amenities</Link>
-          <Link href="#gallery" onClick={() => setMenuOpen(false)}>Gallery</Link>
-          <Link href="#rules" onClick={() => setMenuOpen(false)}>House Rules</Link>
+          <Link href="#about" onClick={() => setMenuOpen(false)}>O nama</Link>
+          <Link href="#amenities" onClick={() => setMenuOpen(false)}>Sadržaji</Link>
+          <Link href="#gallery" onClick={() => setMenuOpen(false)}>Galerija</Link>
+          <Link href="#rules" onClick={() => setMenuOpen(false)}>Kućni red</Link>
           <Link href="#contact" className={styles.navCta} onClick={() => setMenuOpen(false)}>
-            Book a Stay
+            Rezerviši boravak
           </Link>
         </nav>
 
         <button
           className={styles.menuToggle}
           onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-label={menuOpen ? "Zatvori meni" : "Otvori meni"}
           aria-expanded={menuOpen}
         >
           <span className={`${styles.bar} ${menuOpen ? styles.barOpen : ""}`} />
