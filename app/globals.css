@@ -15,6 +15,22 @@
   --color-gold-dark: #A8895F;
   --color-dark: #111010;
 
+  /* Amenities design tokens */
+  --bg-primary:    #FAF8F5;
+  --bg-stone:      #F0EDE7;
+  --bg-sage:       #EEF0EA;
+  --bg-eco:        #E8EDE4;
+  --bg-card:        #FFFFFF;
+  --bg-card-warm:   #FBF7F1;
+  --bg-essentials:  #F4F1EC;
+  --gold:           #B8945A;
+  --divider:        rgba(0, 0, 0, 0.08);
+  --text-essentials: #4A433D;
+  --text-primary:  #2C2825;
+  --text-body:     #6B6059;
+  --text-hint:     #9C8E7E;
+  --border-default: rgba(0, 0, 0, 0.07);
+
   /* Typography */
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
