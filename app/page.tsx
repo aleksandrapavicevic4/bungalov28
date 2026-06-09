@@ -4,7 +4,8 @@ import Hero from "@/components/sections/Hero/Hero";
 import About from "@/components/sections/About/About";
 import Amenities from "@/components/sections/Amenities/Amenities";
 import Gallery from "@/components/sections/Gallery/Gallery";
-import HouseRules from "@/components/sections/HouseRules/HouseRules";
+import FAQ from "@/components/sections/FAQ/FAQ";
+import Pricing from "@/components/sections/Pricing/Pricing";
 import ContactCTA from "@/components/sections/ContactCTA/ContactCTA";
 
 export default function HomePage() {
@@ -16,7 +17,8 @@ export default function HomePage() {
         <About />
         <Amenities />
         <Gallery />
-        <HouseRules />
+        <Pricing />
+        <FAQ />
         <ContactCTA />
       </main>
       <Footer />
