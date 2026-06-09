@@ -3,6 +3,14 @@
 import { useEffect, useRef } from 'react';
 import styles from './Amenities.module.css';
 
+// TODO: confirm guest capacity and bedroom count before launch
+const quickFacts = [
+  { icon: 'ti-users',   label: 'Up to 8 guests'      },
+  { icon: 'ti-bed',     label: '4 bedrooms'           },
+  { icon: 'ti-paw',     label: 'Pets welcome'         },
+  { icon: 'ti-car',     label: 'Free private parking' },
+];
+
 const wellnessCards = [
   {
     title: 'Heated Pool',
@@ -195,6 +203,7 @@ export default function Amenities() {
                   src={item.photo}
                   alt={item.photoAlt}
                   className={styles.amenityPhoto}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
@@ -205,6 +214,24 @@ export default function Amenities() {
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p className={styles.cardDetail}>{item.detail}</p>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Quick-facts bar ─────────────────────────────────────── */}
+      <div className={styles.facts}>
+        <div
+          className={`${styles.factsInner} ${styles.animate}`}
+          data-animate
+        >
+          {quickFacts.map((fact) => (
+            <div key={fact.label} className={styles.factItem}>
+              <i
+                className={`ti ${fact.icon} ${styles.factIcon}`}
+                aria-hidden="true"
+              />
+              <span className={styles.factLabel}>{fact.label}</span>
             </div>
           ))}
         </div>
@@ -234,7 +261,7 @@ export default function Amenities() {
             {wellnessCards.map((item, i) => (
               <div
                 key={item.title}
-                className={`${styles.wellnessCard} ${styles.animateRight}`}
+                className={`${styles.wellnessCard} ${styles.zoneCardHover} ${styles.animateRight}`}
                 data-animate
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
@@ -263,7 +290,7 @@ export default function Amenities() {
               {groundsCards.map((item, i) => (
                 <div
                   key={item.title}
-                  className={`${styles.groundsCard} ${styles.animateLeft}`}
+                  className={`${styles.groundsCard} ${styles.zoneCardHover} ${styles.animateLeft}`}
                   data-animate
                   style={{ transitionDelay: `${i * 80}ms` }}
                 >
@@ -374,7 +401,7 @@ export default function Amenities() {
             {comfortCards.map((item, i) => (
               <div
                 key={item.title}
-                className={`${styles.comfortCard} ${item.featured ? styles.comfortCardFeatured : ''} ${styles.animate}`}
+                className={`${styles.comfortCard} ${styles.zoneCardHover} ${item.featured ? styles.comfortCardFeatured : ''} ${styles.animate}`}
                 data-animate
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
@@ -388,6 +415,50 @@ export default function Amenities() {
             ))}
           </div>
 
+        </div>
+      </div>
+
+      {/* ── Layer 4: In-Villa Essentials ─────────────────────────── */}
+      <div className={styles.essentials}>
+        <div
+          className={`${styles.essentialsInner} ${styles.animateFade}`}
+          data-animate
+        >
+          <p className={styles.zoneLabel}>In-Villa Essentials</p>
+          <h2 className={styles.essentialsHeadline}>The details.</h2>
+          <div className={styles.essentialsDivider} aria-hidden="true" />
+          <div className={styles.essentialsList}>
+            <ul className={styles.essentialsCol}>
+              <li>Free WiFi</li>
+              <li>Towels provided</li>
+              <li>Slippers provided</li>
+              <li>Hair dryer</li>
+              <li>Air conditioning</li>
+            </ul>
+            <ul className={styles.essentialsColRight}>
+              <li>Private parking</li>
+              <li>Video surveillance</li>
+              <li>Underfloor heating</li>
+              <li>Fireplace</li>
+              <li>Washing &amp; drying</li>
+            </ul>
+          </div>
+          <div className={styles.essentialsDivider} aria-hidden="true" />
+        </div>
+      </div>
+
+      {/* ── Layer 5: Section Close / CTA ─────────────────────────── */}
+      <div className={styles.sectionCta}>
+        <div
+          className={`${styles.sectionCtaInner} ${styles.animateFade}`}
+          data-animate
+        >
+          <p className={styles.ctaText}>
+            Ready to experience it yourself?
+          </p>
+          <a href="#contact" className={styles.ctaButton}>
+            Check Availability
+          </a>
         </div>
       </div>
 

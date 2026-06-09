@@ -20,9 +20,12 @@
   --bg-stone:      #F0EDE7;
   --bg-sage:       #EEF0EA;
   --bg-eco:        #E8EDE4;
-  --bg-card:       #FFFFFF;
-  --bg-card-warm:  #FBF7F1;
-  --gold:          #B8945A;
+  --bg-card:        #FFFFFF;
+  --bg-card-warm:   #FBF7F1;
+  --bg-essentials:  #F4F1EC;
+  --gold:           #B8945A;
+  --divider:        rgba(0, 0, 0, 0.08);
+  --text-essentials: #4A433D;
   --text-primary:  #2C2825;
   --text-body:     #6B6059;
   --text-hint:     #9C8E7E;
