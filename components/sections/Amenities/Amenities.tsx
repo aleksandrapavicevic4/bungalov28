@@ -447,21 +447,6 @@ export default function Amenities() {
         </div>
       </div>
 
-      {/* ── Layer 5: Section Close / CTA ─────────────────────────── */}
-      <div className={styles.sectionCta}>
-        <div
-          className={`${styles.sectionCtaInner} ${styles.animateFade}`}
-          data-animate
-        >
-          <p className={styles.ctaText}>
-            Ready to experience it yourself?
-          </p>
-          <a href="#contact" className={styles.ctaButton}>
-            Check Availability
-          </a>
-        </div>
-      </div>
-
     </section>
   );
 }

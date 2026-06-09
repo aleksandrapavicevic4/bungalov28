@@ -25,6 +25,7 @@ export default function Header() {
           <Link href="#about" onClick={() => setMenuOpen(false)}>O nama</Link>
           <Link href="#amenities" onClick={() => setMenuOpen(false)}>Sadržaji</Link>
           <Link href="#gallery" onClick={() => setMenuOpen(false)}>Galerija</Link>
+          <Link href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</Link>
           <Link href="#faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
           <Link href="#contact" className={styles.navCta} onClick={() => setMenuOpen(false)}>
             Rezerviši boravak
