@@ -1,136 +1,56 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import styles from './Amenities.module.css';
+import { useEffect, useRef } from "react";
+import styles from "./Amenities.module.css";
 
 // TODO: confirm guest capacity and bedroom count before launch
 const quickFacts = [
-  { icon: 'ti-users',   label: 'Up to 8 guests'      },
-  { icon: 'ti-bed',     label: '4 bedrooms'           },
-  { icon: 'ti-paw',     label: 'Pets welcome'         },
-  { icon: 'ti-car',     label: 'Free private parking' },
-];
-
-const wellnessCards = [
-  {
-    title: 'Heated Pool',
-    desc: '32°C, year-round swimming in complete privacy',
-    icon: 'ti-ripple',
-  },
-  {
-    title: 'Turbo Jet Swim',
-    desc: 'Swim against a current without leaving the pool',
-    icon: 'ti-wave-sine',
-  },
-  {
-    title: 'Jacuzzi',
-    desc: 'Heated and spacious — seats up to 7 guests',
-    icon: 'ti-bubble',
-  },
-  {
-    title: 'Sun Loungers',
-    desc: 'Positioned for the afternoon light',
-    icon: 'ti-sun',
-  },
-];
-
-const groundsCards = [
-  {
-    title: 'Private Yard',
-    desc: 'Spacious, fully enclosed outdoor space',
-    icon: 'ti-trees',
-  },
-  {
-    title: 'Outdoor Gazebo',
-    desc: 'Shaded dining and lounging',
-    icon: 'ti-building-pavilion',
-  },
-  {
-    title: 'Kitchen Garden',
-    desc: 'Vegetables actually from the garden',
-    icon: 'ti-plant',
-  },
-];
-
-const comfortCards = [
-  {
-    title: 'JBL PartyBox 310',
-    detail: 'Fills the yard with sound',
-    icon: 'ti-device-speaker',
-    featured: true,
-  },
-  {
-    title: 'Wine Cooler',
-    detail: 'For the right temperature, every time',
-    icon: 'ti-bottle',
-    featured: false,
-  },
-  {
-    title: 'TV & Netflix',
-    detail: 'Evenings in, made better',
-    icon: 'ti-device-tv',
-    featured: false,
-  },
-  {
-    title: 'Board Games',
-    detail: 'For unplugged evenings',
-    icon: 'ti-chess',
-    featured: false,
-  },
-  {
-    title: 'Underfloor Heating',
-    detail: 'Cold mornings are warm mornings',
-    icon: 'ti-temperature-plus',
-    featured: false,
-  },
-  {
-    title: 'Air Conditioning',
-    detail: 'Your comfort, your temperature',
-    icon: 'ti-wind',
-    featured: false,
-  },
+  { icon: "ti-users", label: "Do 8 gostiju" },
+  { icon: "ti-bed", label: "4 spavaće sobe" },
+  { icon: "ti-paw", label: "Kućni ljubimci dobrodošli" },
+  { icon: "ti-car", label: "Privatni parking" },
 ];
 
 const highlights = [
   {
-    title: 'Heated Pool',
-    detail: '32°C, all year round',
-    icon: 'ti-ripple',
+    title: "Grejani bazen",
+    detail: "32°C — otvorena sezona nikad ne završava",
+    icon: "ti-ripple",
     photo:
-      'https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=440&h=320&fit=crop&auto=format',
-    photoAlt: 'Heated outdoor pool with clear blue water',
+      "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=440&h=320&fit=crop&auto=format",
+    photoAlt: "Grejani bazen sa bistrom vodom",
   },
   {
-    title: 'Jacuzzi',
-    detail: 'Seats up to 7 guests',
-    icon: 'ti-bubble',
+    title: "Džakuzi",
+    detail: "Grejan, prostran — prima do sedam gostiju",
+    icon: "ti-bubble",
     photo:
-      'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=440&h=320&fit=crop&auto=format',
-    photoAlt: 'Outdoor jacuzzi with bubbling water',
+      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=440&h=320&fit=crop&auto=format",
+    photoAlt: "Spoljni džakuzi sa toplom vodom",
   },
   {
-    title: 'Fireplace',
-    detail: 'Wood-burning, indoors',
-    icon: 'ti-flame',
+    title: "Kamin",
+    detail: "Drva gore dok napolju stiže jesen",
+    icon: "ti-flame",
     photo:
-      'https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=440&h=320&fit=crop&auto=format',
-    photoAlt: 'Stone fireplace with warm glowing fire',
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=440&h=320&fit=crop&auto=format",
+    photoAlt: "Kameni kamin sa otvorenom vatrom",
   },
   {
-    title: 'Kitchen Garden',
-    detail: 'Homegrown produce',
-    icon: 'ti-plant',
+    title: "Domaća bašta",
+    detail: "Svežina direktno s gredice",
+    icon: "ti-plant",
     photo:
-      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=440&h=320&fit=crop&auto=format',
-    photoAlt: 'Kitchen garden with raised vegetable beds',
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=440&h=320&fit=crop&auto=format",
+    photoAlt: "Domaća bašta sa povrćem",
   },
   {
-    title: 'Outdoor Gazebo',
-    detail: 'Shaded & private',
-    icon: 'ti-building-pavilion',
+    title: "Letnjikovac",
+    detail: "Hlad i mir, odmah napolju",
+    icon: "ti-building-pavilion",
     photo:
-      'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=440&h=320&fit=crop&auto=format',
-    photoAlt: 'Shaded outdoor gazebo surrounded by garden',
+      "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=440&h=320&fit=crop&auto=format",
+    photoAlt: "Zasenčen letnjikovac okružen zelenilom",
   },
 ];
 
@@ -138,9 +58,8 @@ export default function Amenities() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const elements = sectionRef.current?.querySelectorAll<HTMLElement>(
-      '[data-animate]'
-    );
+    const elements =
+      sectionRef.current?.querySelectorAll<HTMLElement>("[data-animate]");
     if (!elements) return;
 
     const observer = new IntersectionObserver(
@@ -152,7 +71,7 @@ export default function Amenities() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     elements.forEach((el) => observer.observe(el));
@@ -161,34 +80,35 @@ export default function Amenities() {
 
   return (
     <section id="amenities" className={styles.amenities} ref={sectionRef}>
-
-      {/* ── Layer 1: Section Entry ───────────────────────────────── */}
+      {/* ── Section Entry ───────────────────────────────────────── */}
       <div className={styles.entry}>
         <div className={styles.entryInner}>
           <p
             className={`${styles.entryLabel} ${styles.animateFade}`}
             data-animate
           >
-            Experience
+            Sadržaji
           </p>
           <h2
             className={`${styles.entryHeadline} ${styles.animate}`}
             data-animate
-            style={{ transitionDelay: '200ms' }}
+            style={{ transitionDelay: "200ms" }}
           >
-            Everything you need.<br />Nothing you don&apos;t.
+            Sve što vam treba.
+            <br />
+            Ništa više.
           </h2>
           <p
             className={`${styles.entrySubtext} ${styles.animateFade}`}
             data-animate
-            style={{ transitionDelay: '400ms' }}
+            style={{ transitionDelay: "400ms" }}
           >
-            Bungalov28 is designed for rest, play, and everything in between.
+            Sve na jednom mestu - za odmor koji se pamti.
           </p>
         </div>
       </div>
 
-      {/* ── Layer 2: Signature Highlights Strip ─────────────────── */}
+      {/* ── Signature Highlights ────────────────────────────────── */}
       <div className={styles.strip}>
         <div className={styles.stripInner}>
           {highlights.map((item, i) => (
@@ -221,10 +141,7 @@ export default function Amenities() {
 
       {/* ── Quick-facts bar ─────────────────────────────────────── */}
       <div className={styles.facts}>
-        <div
-          className={`${styles.factsInner} ${styles.animate}`}
-          data-animate
-        >
+        <div className={`${styles.factsInner} ${styles.animate}`} data-animate>
           {quickFacts.map((fact) => (
             <div key={fact.label} className={styles.factItem}>
               <i
@@ -237,216 +154,34 @@ export default function Amenities() {
         </div>
       </div>
 
-      {/* ── Layer 3A: Wellness Zone ──────────────────────────────── */}
-      <div className={styles.wellness}>
-        <div className={styles.wellnessInner}>
-
-          {/* Left — text column */}
-          <div
-            className={`${styles.wellnessText} ${styles.animateLeft}`}
-            data-animate
-          >
-            <p className={styles.zoneLabel}>Wellness</p>
-            <h2 className={styles.zoneHeadline}>Your private retreat.</h2>
-            <div className={styles.goldDivider} aria-hidden="true" />
-            <p className={styles.zoneBody}>
-              The pool stays warm at 32°C through every season. The turbo jet
-              system lets you swim against a current. The jacuzzi holds seven.
-              And the sun loungers are always in the right spot.
-            </p>
-          </div>
-
-          {/* Right — 2×2 card grid */}
-          <div className={styles.wellnessCards}>
-            {wellnessCards.map((item, i) => (
-              <div
-                key={item.title}
-                className={`${styles.wellnessCard} ${styles.zoneCardHover} ${styles.animateRight}`}
-                data-animate
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                <i
-                  className={`ti ${item.icon} ${styles.wellnessCardIcon}`}
-                  aria-hidden="true"
-                />
-                <h3 className={styles.wellnessCardTitle}>{item.title}</h3>
-                <p className={styles.wellnessCardDesc}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </div>
-
-      {/* ── Layer 3B: The Grounds Zone ───────────────────────────── */}
-      <div className={styles.grounds}>
-        <div className={styles.groundsInner}>
-
-          {/* Left — cards column */}
-          <div className={styles.groundsCards}>
-
-            {/* Row 1: three equal cards, staggered left */}
-            <div className={styles.groundsRow}>
-              {groundsCards.map((item, i) => (
-                <div
-                  key={item.title}
-                  className={`${styles.groundsCard} ${styles.zoneCardHover} ${styles.animateLeft}`}
-                  data-animate
-                  style={{ transitionDelay: `${i * 80}ms` }}
-                >
-                  <i
-                    className={`ti ${item.icon} ${styles.groundsCardIcon}`}
-                    aria-hidden="true"
-                  />
-                  <h3 className={styles.groundsCardTitle}>{item.title}</h3>
-                  <p className={styles.groundsCardDesc}>{item.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Row 2: eco card */}
-            <div
-              className={`${styles.ecoCard} ${styles.animateFade}`}
-              data-animate
-              style={{ transitionDelay: '240ms' }}
-            >
-              <div className={styles.ecoCardHeader}>
-                <i
-                  className={`ti ti-solar-panel ${styles.ecoCardIcon}`}
-                  aria-hidden="true"
-                />
-                <span className={styles.ecoBadge}>Eco</span>
-              </div>
-              <h3 className={styles.ecoCardTitle}>
-                Solar panels &amp; eco-friendly design
-              </h3>
-              <p className={styles.ecoCardBody}>
-                Bungalov28 runs partly on solar energy. Comfort without compromise.
-              </p>
-            </div>
-
-            {/* Row 3: utility row — understated, not a card */}
-            <div
-              className={`${styles.utilityRow} ${styles.animateFade}`}
-              data-animate
-              style={{ transitionDelay: '320ms' }}
-            >
-              <i
-                className={`ti ti-home ${styles.utilityIcon}`}
-                aria-hidden="true"
-              />
-              <span className={styles.utilityText}>
-                Outdoor utility house&ensp;·&ensp;Extra bathroom&ensp;·&ensp;Washing machine&ensp;·&ensp;Dryer
-              </span>
-            </div>
-
-          </div>
-
-          {/* Right — text column */}
-          <div
-            className={`${styles.groundsText} ${styles.animateRight}`}
-            data-animate
-          >
-            <p className={styles.zoneLabel}>The Grounds</p>
-            <h2 className={styles.zoneHeadline}>Space to breathe.</h2>
-            <div className={styles.goldDivider} aria-hidden="true" />
-            <p className={styles.zoneBody}>
-              A spacious private yard, a shaded gazebo, and a kitchen garden
-              where the tomatoes are actually from the garden. Solar panels run
-              quietly in the background.
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-      {/* ── Layer 3C: Comfort & Entertainment Zone ───────────────── */}
-      <div className={styles.comfort}>
-        <div className={styles.comfortInner}>
-
-          {/* Centered text header */}
-          <div className={styles.comfortHeader}>
-            <p
-              className={`${styles.zoneLabel} ${styles.animateFade}`}
-              data-animate
-            >
-              Comfort
-            </p>
-            <h2
-              className={`${styles.zoneHeadline} ${styles.animate}`}
-              data-animate
-              style={{ transitionDelay: '200ms' }}
-            >
-              Nothing was forgotten.
-            </h2>
-            <div
-              className={`${styles.comfortDivider} ${styles.animateFade}`}
-              data-animate
-              style={{ transitionDelay: '300ms' }}
-              aria-hidden="true"
-            />
-            <p
-              className={`${styles.zoneBody} ${styles.animateFade}`}
-              data-animate
-              style={{ transitionDelay: '400ms' }}
-            >
-              The JBL PartyBox fills the yard. The wine cooler is stocked for
-              the occasion. Underfloor heating means cold mornings are warm
-              mornings. And the fireplace is always ready.
-            </p>
-          </div>
-
-          {/* 3×2 card grid — wave stagger L→R, T→B */}
-          <div className={styles.comfortGrid}>
-            {comfortCards.map((item, i) => (
-              <div
-                key={item.title}
-                className={`${styles.comfortCard} ${styles.zoneCardHover} ${item.featured ? styles.comfortCardFeatured : ''} ${styles.animate}`}
-                data-animate
-                style={{ transitionDelay: `${i * 60}ms` }}
-              >
-                <i
-                  className={`ti ${item.icon} ${styles.comfortCardIcon}`}
-                  aria-hidden="true"
-                />
-                <h3 className={styles.comfortCardTitle}>{item.title}</h3>
-                <p className={styles.comfortCardDetail}>{item.detail}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </div>
-
-      {/* ── Layer 4: In-Villa Essentials ─────────────────────────── */}
+      {/* ── In-Villa Essentials ──────────────────────────────────── */}
       <div className={styles.essentials}>
         <div
           className={`${styles.essentialsInner} ${styles.animateFade}`}
           data-animate
         >
-          <p className={styles.zoneLabel}>In-Villa Essentials</p>
-          <h2 className={styles.essentialsHeadline}>The details.</h2>
+          <p className={styles.zoneLabel}>U vili</p>
+          <h2 className={styles.essentialsHeadline}>Sve na svom mestu.</h2>
           <div className={styles.essentialsDivider} aria-hidden="true" />
           <div className={styles.essentialsList}>
             <ul className={styles.essentialsCol}>
-              <li>Free WiFi</li>
-              <li>Towels provided</li>
-              <li>Slippers provided</li>
-              <li>Hair dryer</li>
-              <li>Air conditioning</li>
+              <li>Besplatan WiFi</li>
+              <li>Peškiri i papuče</li>
+              <li>Fen za kosu</li>
+              <li>Klima uređaj</li>
+              <li>Podno grejanje</li>
             </ul>
             <ul className={styles.essentialsColRight}>
-              <li>Private parking</li>
-              <li>Video surveillance</li>
-              <li>Underfloor heating</li>
-              <li>Fireplace</li>
-              <li>Washing &amp; drying</li>
+              <li>Privatni parking</li>
+              <li>Video nadzor</li>
+              <li>Kamin</li>
+              <li>Veš mašina i sušilica</li>
+              <li>Pomoćni objekat sa kupatilom</li>
             </ul>
           </div>
           <div className={styles.essentialsDivider} aria-hidden="true" />
         </div>
       </div>
-
     </section>
   );
 }

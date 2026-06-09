@@ -5,55 +5,55 @@ import styles from "./Pricing.module.css";
 
 const packages = [
   {
-    title: "Day Stay",
-    description: "Perfect for pool days, birthdays, and relaxed gatherings.",
+    title: "Dnevni boravak",
+    description: "Dan uz bazen, uz prijatelje ili porodicu — bez noćenja.",
     from: "€300",
-    includes: ["11 AM – 10 PM", "Up to 10 guests", "Pool access"],
+    includes: ["11:00 – 22:00", "Do 10 gostiju", "Bazen i džakuzi"],
   },
   {
-    title: "Overnight Stay",
-    description: "For a private villa experience with full comfort.",
+    title: "Noćenje",
+    description: "Cela vila za vas — od dolaska do sutrašnjeg jutra.",
     from: "€250",
-    includes: ["Overnight stay", "Up to 8 guests", "Pool access"],
+    includes: ["Noćenje", "Do 8 gostiju", "Bazen i džakuzi"],
     featured: true,
   },
   {
-    title: "Private Events",
-    description: "For celebrations, bachelorette parties, and special occasions.",
+    title: "Privatna proslava",
+    description: "Рођendan, devojačka večer ili posebna prilika — po dogovoru.",
     from: "€500",
-    includes: ["Custom setup", "Prior approval required", "Flexible guest options"],
+    includes: ["Prilagođeno vašim potrebama", "Uz prethodni dogovor", "Fleksibilan broj gostiju"],
   },
 ];
 
 const seasonalTable = [
   {
-    season: "Low Season",
+    season: "Niska sezona",
     rows: [
-      { label: "Day Stay", price: "€300" },
-      { label: "Overnight · up to 4 guests", price: "€250" },
-      { label: "Overnight · up to 8 guests", price: "€300" },
+      { label: "Dnevni boravak", price: "€300" },
+      { label: "Noćenje · do 4 gosta", price: "€250" },
+      { label: "Noćenje · do 8 gostiju", price: "€300" },
     ],
   },
   {
-    season: "High Season",
+    season: "Visoka sezona",
     rows: [
-      { label: "Day Stay", price: "€400" },
-      { label: "Overnight · up to 4 guests", price: "€350" },
-      { label: "Overnight · up to 8 guests", price: "€400" },
+      { label: "Dnevni boravak", price: "€400" },
+      { label: "Noćenje · do 4 gosta", price: "€350" },
+      { label: "Noćenje · do 8 gostiju", price: "€400" },
     ],
   },
   {
-    season: "Events",
+    season: "Događaji",
     rows: [
-      { label: "Private celebration", price: "from €500" },
-      { label: "Bachelorette party", price: "from €550" },
-      { label: "Larger gatherings", price: "on request" },
+      { label: "Privatna proslava", price: "od €500" },
+      { label: "Devojačka večer", price: "od €550" },
+      { label: "Veća okupljanja", price: "na upit" },
     ],
   },
 ];
 
 const disclaimer =
-  "Final prices may vary depending on season, number of guests, and selected extras.";
+  "Konačne cene mogu varirati u zavisnosti od sezone, broja gostiju i izabranih dodatnih usluga.";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -64,9 +64,9 @@ export default function Pricing() {
 
         {/* Header */}
         <div className={styles.header}>
-          <p className={styles.eyebrow}>Transparent Pricing</p>
-          <h2 className={styles.headline}>Pricing</h2>
-          <p className={styles.subtitle}>Choose the stay option that fits your plans.</p>
+          <p className={styles.eyebrow}>Cene</p>
+          <h2 className={styles.headline}>Cenovnik</h2>
+          <p className={styles.subtitle}>Izaberite opciju koja odgovara vašim planovima.</p>
         </div>
 
         {/* Package cards */}
@@ -77,14 +77,14 @@ export default function Pricing() {
               className={`${styles.card} ${pkg.featured ? styles.cardFeatured : ""}`}
             >
               {pkg.featured && (
-                <span className={styles.featuredBadge}>Most Popular</span>
+                <span className={styles.featuredBadge}>Najpopularnije</span>
               )}
               <div className={styles.cardTop}>
                 <h3 className={styles.cardTitle}>{pkg.title}</h3>
                 <p className={styles.cardDescription}>{pkg.description}</p>
               </div>
               <div className={styles.cardPrice}>
-                <span className={styles.from}>from</span>
+                <span className={styles.from}>od</span>
                 <span className={styles.amount}>{pkg.from}</span>
               </div>
               <ul className={styles.cardIncludes}>
@@ -96,7 +96,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <a href="#contact" className={styles.cardCta}>
-                Inquire
+                Upit
               </a>
             </div>
           ))}
@@ -104,7 +104,7 @@ export default function Pricing() {
 
         {/* Seasonal table */}
         <div className={styles.tableWrapper}>
-          <h3 className={styles.tableHeading}>Seasonal Rates</h3>
+          <h3 className={styles.tableHeading}>Sezonske cene</h3>
           <div className={styles.tableGrid}>
             {seasonalTable.map((group) => (
               <div key={group.season} className={styles.tableGroup}>
