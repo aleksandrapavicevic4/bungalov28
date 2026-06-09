@@ -12,11 +12,11 @@ export default function Hero() {
           postaje luksuz
         </h1>
         <p className={styles.subheading}>
-          Skroviti bungalov idealan za porodični odmor, dnevne proslave i devojačke/momačke večeri.
+          Privatni bungalov za odmor, proslave i trenutke koje vredi zapamtiti.
         </p>
         <div className={styles.actions}>
-          <a href="#contact" className={styles.btnPrimary}>Rezerviši boravak</a>
-          <a href="#about" className={styles.btnSecondary}>Saznaj više</a>
+          <a href="#contact" className={styles.btnPrimary}>Pošaljite upit</a>
+          <a href="#about" className={styles.btnSecondary}>Saznajte više</a>
         </div>
       </div>
     </section>

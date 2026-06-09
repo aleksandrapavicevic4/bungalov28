@@ -5,34 +5,34 @@ import styles from "./FAQ.module.css";
 
 const faqs = [
   {
-    question: "What are the check-in and check-out times?",
+    question: "Kada je prijava i odjava?",
     answer:
-      "Check-in starts at 3:00 PM and check-out is until 11:00 AM. Early check-in and late check-out may be available upon request — please let us know in advance.",
+      "Prijava je od 15:00, odjava do 11:00. Ranija prijava ili kasnija odjava mogući su na zahtev — samo nas unapred obavestite.",
   },
   {
-    question: "How many guests can stay?",
+    question: "Koliko gostiju može da boravi?",
     answer:
-      "The property accommodates up to 8 guests unless otherwise agreed in writing. Day visitors must be disclosed at the time of booking.",
+      "Vila prima do 8 gostiju, osim ako nije drugačije dogovoreno. Dnevne posete potrebno je najaviti pri rezervaciji.",
   },
   {
-    question: "Are events or celebrations allowed?",
+    question: "Da li su moguće proslave i privatni događaji?",
     answer:
-      "Events and gatherings may be possible with prior approval. Please reach out before booking so we can ensure a seamless experience for everyone.",
+      "Da, uz prethodni dogovor. Javite nam se pre rezervacije kako bismo sve isplanirali zajedno.",
   },
   {
-    question: "Are pets allowed?",
+    question: "Da li su kućni ljubimci dobrodošli?",
     answer:
-      "Pets are welcome upon request. Please inform us ahead of time so we can make the necessary arrangements.",
+      "Kućni ljubimci su dobrodošli — samo nas unapred obavestite kako bismo se pripremili.",
   },
   {
-    question: "Are there any quiet hours?",
+    question: "Da li postoje tihi sati?",
     answer:
-      "Please respect the surrounding area and neighbours. Quiet hours are observed between 11:00 PM and 8:00 AM. Outdoor music should remain at a moderate level at all times.",
+      "Tihi sati su od 23:00 do 08:00. Molimo vas da poštujete mir okoline — muzika napolju treba biti na umerenoj jačini tokom celog boravka.",
   },
   {
-    question: "Is smoking allowed?",
+    question: "Da li je pušenje dozvoljeno?",
     answer:
-      "Smoking is not permitted inside the property. Designated outdoor areas are available for smokers.",
+      "Pušenje nije dozvoljeno u zatvorenom prostoru. Napolju su dostupni odgovarajući prostori.",
   },
 ];
 
@@ -47,9 +47,9 @@ export default function FAQ() {
     <section id="faq" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.header}>
-          <p className={styles.eyebrow}>Before Your Stay</p>
-          <h2 className={styles.headline}>Frequently Asked Questions</h2>
-          <p className={styles.subtitle}>Everything you need to know before your stay.</p>
+          <p className={styles.eyebrow}>Pre vašeg dolaska</p>
+          <h2 className={styles.headline}>Česta pitanja</h2>
+          <p className={styles.subtitle}>Sve što treba da znate pre dolaska.</p>
         </div>
 
         <div className={styles.accordion}>

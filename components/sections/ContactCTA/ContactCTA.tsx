@@ -4,21 +4,20 @@ export default function ContactCTA() {
   return (
     <section id="contact" className={styles.cta}>
       <div className={styles.inner}>
-        <p className={styles.eyebrow}>Rezerviši boravak</p>
+        <p className={styles.eyebrow}>Rezervacije i upiti</p>
         <h2 className={styles.headline}>
-          Spremni za dolazak?
+          Planirате boravak?
         </h2>
         <p className={styles.body}>
-          Bungalov28 je dostupan za vikend predahe, nedeljne boravke i
-          privatne proslave. Javite se kako biste proverili dostupnost
-          i dogovorili detalje vašeg boravka.
+          Bungalov28 je dostupan za vikend odmore, duže boravke i
+          privatne proslave. Pišite nam — zajedno ćemo dogovoriti sve detalje.
         </p>
         <div className={styles.actions}>
           <a href="mailto:hello@bungalov28.com" className={styles.btnPrimary}>
-            Kontaktirajte nas
+            Pišite nam
           </a>
           <p className={styles.note}>
-            Obično odgovaramo u roku od 24 sata.
+            Odgovaramo u roku od 24 sata.
           </p>
         </div>
       </div>

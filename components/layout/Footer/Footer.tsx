@@ -16,7 +16,8 @@ export default function Footer() {
           <Link href="#about">O nama</Link>
           <Link href="#amenities">Sadržaji</Link>
           <Link href="#gallery">Galerija</Link>
-          <Link href="#rules">Kućni red</Link>
+          <Link href="#pricing">Cenovnik</Link>
+          <Link href="#faq">Česta pitanja</Link>
           <Link href="#contact">Kontakt</Link>
         </nav>
 

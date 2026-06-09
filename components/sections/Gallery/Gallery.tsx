@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import styles from "./Gallery.module.css";
 
-type Category = "Exterior" | "Interior" | "Pool" | "Rooms" | "Details";
+type Category = "Eksterijer" | "Enterijer" | "Bazen" | "Sobe" | "Detalji";
 
 interface Tile {
   id: number;
@@ -40,113 +40,113 @@ const POSITIONS: Record<number, Array<{ col: string; row: string }>> = {
 };
 
 const categoryData: Record<Category, Tile[]> = {
-  Exterior: [
+  Eksterijer: [
     {
       id: 101,
-      label: "Villa Exterior",
+      label: "Eksterijer vile",
       src: "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1400&q=80",
     },
     {
       id: 102,
-      label: "Terrace",
+      label: "Terasa",
       src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
     },
     {
       id: 103,
-      label: "Garden Entrance",
+      label: "Ulaz u baštu",
       src: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80",
     },
     {
       id: 104,
-      label: "Villa Facade",
+      label: "Fasada vile",
       src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1400&q=80",
     },
     {
       id: 105,
-      label: "Evening Light",
+      label: "Večernje svetlo",
       src: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1400&q=80",
     },
   ],
-  Interior: [
+  Enterijer: [
     {
       id: 201,
-      label: "Living Room",
+      label: "Dnevna soba",
       src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&q=80",
     },
     {
       id: 202,
-      label: "Dining Room",
+      label: "Trpezarija",
       src: "https://images.unsplash.com/photo-1617104678098-de229db51175?w=800&q=80",
     },
     {
       id: 203,
-      label: "Kitchen",
+      label: "Kuhinja",
       src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
     },
     {
       id: 204,
-      label: "Lounge Area",
+      label: "Prostor za odmor",
       src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=80",
     },
   ],
-  Pool: [
+  Bazen: [
     {
       id: 301,
-      label: "Infinity Pool",
+      label: "Infinity bazen",
       src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1400&q=80",
     },
     {
       id: 302,
-      label: "Pool Deck",
+      label: "Paluba bazena",
       src: "https://images.unsplash.com/photo-1540541338537-71cf16ef32c9?w=800&q=80",
     },
     {
       id: 303,
-      label: "Pool at Sunset",
+      label: "Bazen u zalasku sunca",
       src: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80",
     },
     {
       id: 304,
-      label: "Morning Swim",
+      label: "Jutarnje plivanje",
       src: "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=1400&q=80",
     },
   ],
-  Rooms: [
+  Sobe: [
     {
       id: 401,
-      label: "Master Suite",
+      label: "Glavna soba",
       src: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=80",
     },
     {
       id: 402,
-      label: "Guest Room",
+      label: "Gostinska soba",
       src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
     },
     {
       id: 403,
-      label: "Suite Bathroom",
+      label: "Kupatilo",
       src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
     },
     {
       id: 404,
-      label: "Bedroom Detail",
+      label: "Detalj spavaće sobe",
       src: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1400&q=80",
     },
   ],
-  Details: [
+  Detalji: [
     {
       id: 501,
-      label: "Texture & Light",
+      label: "Tekstura i svetlo",
       src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=80",
     },
     {
       id: 502,
-      label: "Garden Path",
+      label: "Staza u bašti",
       src: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80",
     },
     {
       id: 503,
-      label: "Candlelight",
+      label: "Svetlo sveće",
       src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
     },
   ],
@@ -155,7 +155,7 @@ const categoryData: Record<Category, Tile[]> = {
 const CATEGORIES = Object.keys(categoryData) as Category[];
 
 export default function Gallery() {
-  const [active, setActive] = useState<Category>("Exterior");
+  const [active, setActive] = useState<Category>("Eksterijer");
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const [visible, setVisible] = useState(true);
 
@@ -198,8 +198,8 @@ export default function Gallery() {
   return (
     <section id="gallery" className={styles.gallery}>
       <div className={styles.header}>
-        <p className={styles.eyebrow}>The Space</p>
-        <h2 className={styles.headline}>A Glimpse Inside</h2>
+        <p className={styles.eyebrow}>Prostor</p>
+        <h2 className={styles.headline}>Pogled iznutra</h2>
       </div>
 
       <div className={styles.filters}>
@@ -227,7 +227,7 @@ export default function Gallery() {
               className={styles.tile}
               style={{ gridColumn: pos.col, gridRow: pos.row }}
               onClick={() => setLightboxIdx(i)}
-              aria-label={`Open ${tile.label}`}
+              aria-label={`Otvori ${tile.label}`}
             >
               <Image
                 src={tile.src}
@@ -250,13 +250,13 @@ export default function Gallery() {
           role="dialog"
           aria-modal="true"
         >
-          <button className={styles.lbClose} onClick={closeLightbox} aria-label="Close">
+          <button className={styles.lbClose} onClick={closeLightbox} aria-label="Zatvori">
             &#215;
           </button>
           <button
             className={`${styles.lbNav} ${styles.lbPrev}`}
             onClick={(e) => { e.stopPropagation(); navigate(-1); }}
-            aria-label="Previous"
+            aria-label="Prethodno"
           >
             &#8592;
           </button>
@@ -274,7 +274,7 @@ export default function Gallery() {
           <button
             className={`${styles.lbNav} ${styles.lbNext}`}
             onClick={(e) => { e.stopPropagation(); navigate(1); }}
-            aria-label="Next"
+            aria-label="Sledeće"
           >
             &#8594;
           </button>
