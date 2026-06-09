@@ -1,0 +1,144 @@
+/* ── Section shell ─────────────────────────────── */
+.section {
+  background-color: #111010;
+  padding: var(--section-padding-y) var(--container-padding);
+}
+
+.inner {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* ── Header ───────────────────────────────────── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 500;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: #F5F0E8;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  font-size: 0.9375rem;
+  color: rgba(245, 240, 232, 0.45);
+  line-height: 1.75;
+  max-width: 400px;
+}
+
+/* ── Accordion ────────────────────────────────── */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(196, 168, 130, 0.18);
+}
+
+.item {
+  border-bottom: 1px solid rgba(196, 168, 130, 0.18);
+}
+
+/* ── Trigger ─────────────────────────────────── */
+.trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s ease;
+}
+
+.trigger:hover {
+  opacity: 0.85;
+}
+
+.trigger:hover .question {
+  color: var(--color-gold);
+}
+
+.question {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 400;
+  color: #E8E2D8;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  transition: color 0.25s ease;
+}
+
+.itemOpen .question {
+  color: var(--color-gold);
+}
+
+/* ── Plus / minus icon ───────────────────────── */
+.icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(196, 168, 130, 0.35);
+  border-radius: 50%;
+  color: var(--color-gold);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.itemOpen .icon {
+  background-color: rgba(196, 168, 130, 0.12);
+  border-color: rgba(196, 168, 130, 0.6);
+}
+
+.iconVertical {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.itemOpen .iconVertical {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+/* ── Body / answer ───────────────────────────── */
+.body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.itemOpen .body {
+  grid-template-rows: 1fr;
+}
+
+.answer {
+  overflow: hidden;
+  font-size: 0.9375rem;
+  color: rgba(245, 240, 232, 0.55);
+  line-height: 1.8;
+  padding-bottom: 1.5rem;
+}
