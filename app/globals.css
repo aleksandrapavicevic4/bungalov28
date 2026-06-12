@@ -66,6 +66,9 @@ h1, h2, h3, h4, h5, h6 {
 img {
   display: block;
   max-width: 100%;
+  color: var(--text-hint);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
 }
 
 a {

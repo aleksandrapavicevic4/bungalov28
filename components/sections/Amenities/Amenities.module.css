@@ -809,7 +809,17 @@
   }
 
   .card {
-    flex: 0 0 80vw;
+    flex: 0 0 calc(100vw - 48px);
+    scroll-snap-align: center;
+  }
+
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .card:hover .amenityPhoto {
+    transform: none;
   }
 
   /* Wellness: tighter padding, single-column cards */
