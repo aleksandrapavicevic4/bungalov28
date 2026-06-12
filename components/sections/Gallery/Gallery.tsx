@@ -97,7 +97,7 @@ const categoryData: Record<Category, Tile[]> = {
     },
     {
       id: 302,
-      label: "Paluba bazena",
+      label: "Terasa uz bazen",
       src: "https://images.unsplash.com/photo-1540541338537-71cf16ef32c9?w=800&q=80",
     },
     {
@@ -165,6 +165,11 @@ export default function Gallery() {
   const isTwoCol = count === 2;
 
   const closeLightbox = useCallback(() => setLightboxIdx(null), []);
+
+  useEffect(() => {
+    document.body.style.overflow = lightboxIdx !== null ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [lightboxIdx]);
 
   const navigate = useCallback(
     (dir: 1 | -1) => {
