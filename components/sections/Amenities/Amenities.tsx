@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import styles from "./Amenities.module.css";
 
 // TODO: confirm guest capacity and bedroom count before launch
@@ -119,11 +120,12 @@ export default function Amenities() {
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               <div className={styles.photoWrap}>
-                <img
+                <Image
                   src={item.photo}
                   alt={item.photoAlt}
+                  fill
+                  sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 900px) 33vw, 220px"
                   className={styles.amenityPhoto}
-                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
