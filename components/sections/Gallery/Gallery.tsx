@@ -167,8 +167,28 @@ export default function Gallery() {
   const closeLightbox = useCallback(() => setLightboxIdx(null), []);
 
   useEffect(() => {
-    document.body.style.overflow = lightboxIdx !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    const isOpen = lightboxIdx !== null;
+    if (!isOpen) return;
+
+    // iOS Safari ignores overflow:hidden on body for touch scrolling.
+    // Fix: freeze body at current scroll position with position:fixed,
+    // then restore scroll position on close.
+    const scrollY = window.scrollY;
+    const body = document.body;
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.overflow = "hidden";
+
+    return () => {
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      body.style.overflow = "";
+      window.scrollTo(0, scrollY);
+    };
   }, [lightboxIdx]);
 
   const navigate = useCallback(

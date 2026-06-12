@@ -806,20 +806,44 @@
   .stripInner {
     padding: 0 24px;
     gap: 16px;
+    /* Prevent iOS from creating a 3D scroll context */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   .card {
     flex: 0 0 calc(100vw - 48px);
     scroll-snap-align: center;
+    /* Kill all transforms so iOS doesn't tilt/layer the card */
+    transform: none !important;
+    transition: opacity 0.6s ease-out !important;
+    will-change: auto;
+    -webkit-transform: none !important;
   }
 
-  .card:hover {
-    transform: none;
+  .card.visible {
+    opacity: 1;
+    transform: none !important;
+  }
+
+  .card:hover,
+  .card:active {
+    transform: none !important;
     box-shadow: none;
   }
 
-  .card:hover .amenityPhoto {
-    transform: none;
+  .card:hover .amenityPhoto,
+  .card:active .amenityPhoto {
+    transform: none !important;
+  }
+
+  .amenityPhoto {
+    transition: none !important;
+  }
+
+  .photoWrap {
+    transform: none !important;
+    will-change: auto;
   }
 
   /* Wellness: tighter padding, single-column cards */
