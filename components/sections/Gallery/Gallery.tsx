@@ -167,12 +167,11 @@ export default function Gallery() {
   const closeLightbox = useCallback(() => setLightboxIdx(null), []);
 
   useEffect(() => {
-    const isOpen = lightboxIdx !== null;
-    if (!isOpen) return;
+    if (lightboxIdx === null) return;
 
-    // iOS Safari ignores overflow:hidden on body for touch scrolling.
-    // Fix: freeze body at current scroll position with position:fixed,
-    // then restore scroll position on close.
+    // Freeze page scroll for iOS and desktop.
+    // Capture scrollY once at open time — navigating between images must not
+    // change it, so we never update this effect while the lightbox stays open.
     const scrollY = window.scrollY;
     const body = document.body;
     body.style.position = "fixed";
@@ -182,14 +181,20 @@ export default function Gallery() {
     body.style.overflow = "hidden";
 
     return () => {
+      // Remove lock before restoring scroll. Use "instant" so the global
+      // `scroll-behavior: smooth` in globals.css cannot animate the restore —
+      // that animation is what causes the visible page-scroll on lightbox close.
       body.style.position = "";
       body.style.top = "";
       body.style.left = "";
       body.style.right = "";
       body.style.overflow = "";
-      window.scrollTo(0, scrollY);
+      window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
     };
-  }, [lightboxIdx]);
+    // Intentionally depend only on whether the lightbox is open (null vs not),
+    // not on the specific index. This keeps scrollY stable while navigating images.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightboxIdx === null]);
 
   const navigate = useCallback(
     (dir: 1 | -1) => {
